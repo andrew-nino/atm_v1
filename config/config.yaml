@@ -1,0 +1,9 @@
+app:
+  name: "ATM"
+  version: "1.0.0"
+
+http:
+  port: 8000
+
+log:
+  level: "debug"
