@@ -20,9 +20,9 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	v1 := router.Group("/api/v1")
 	{
 		v1.POST("/accounts", h.addAccount)
-		// v1.POST("/accounts/:id/deposit", h.deposit)
-		// v1.POST("/accounts/:id/withdraw", h.withdraw)
-		// v1.GET("/accounts/:id/balance", h.getBalance)
+		v1.POST("/accounts/:id/deposit", h.deposit)
+		v1.POST("/accounts/:id/withdraw", h.withdraw)
+		v1.GET("/accounts/:id/balance", h.getBalance)
 
 	}
 	return router
