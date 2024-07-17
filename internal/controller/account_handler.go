@@ -32,7 +32,7 @@ func (h *Handler) addAccount(c *gin.Context) {
 		Balance: 0,
 	}
 	h.services.Accounts[acc.Id] = &acc
-	log.Printf("New account created with ID: %d\n", acc.Id)
+	log.Printf("New account created with ID: %d", acc.Id)
 	c.JSON(http.StatusOK, gin.H{"message": "Account created successfully"})
 }
 

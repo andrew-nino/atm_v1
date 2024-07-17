@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "e2aeef16-20b9-40e5-8189-549388ece1e1",
+		"name": "atm_v1.0.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24421732"
+	},
+	"item": [
+		{
+			"name": "Add Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/v1/accounts",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deposit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 32\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/v1/accounts/1/deposit",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"1",
+						"deposit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Withdraw",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 16\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/v1/accounts/1/withdraw",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"1",
+						"withdraw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/v1/accounts/1/balance",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"1",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
