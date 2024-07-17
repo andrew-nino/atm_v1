@@ -3,14 +3,13 @@ package controller
 import (
 	"net/http"
 	"strconv"
-	"sync"
 
 	"github.com/andrew-nino/atm_v1/internal/service"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )
-
+// Closing function
 func intSeq() func() int {
 	i := 0
 	return func() int {
@@ -23,24 +22,22 @@ type inputData struct {
 	Amount float64 `json:"amount"`
 }
 
-var mu sync.Mutex
-
+// Adding a new account to map is an imitation of a repository.
 func (h *Handler) addAccount(c *gin.Context) {
-	mu.Lock()
-	defer mu.Unlock()
-
+// The closure is used as a sequence number for identification.
 	nextID := intSeq()
 
 	acc := service.Account{
 		Id:      nextID(),
 		Balance: 0,
 	}
-
 	h.services.Accounts[acc.Id] = &acc
-
+	log.Printf("New account created with ID: %d\n", acc.Id)
 	c.JSON(http.StatusOK, gin.H{"message": "Account created successfully"})
 }
 
+// Depositing funds. The received data is checked for correctness and sent to the goroutine for processing.
+// The result of the operation is received through the channel.
 func (h *Handler) deposit(c *gin.Context) {
 
 	paramStr := c.Param("id")
@@ -69,6 +66,8 @@ func (h *Handler) deposit(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "The deposit transaction was successful."})
 }
 
+// Withdraw funds. The received data is checked for correctness and sent to the goroutine for processing.
+// The result of the operation is received through the channel.
 func (h *Handler) withdraw(c *gin.Context) {
 
 	paramStr := c.Param("id")
@@ -98,6 +97,8 @@ func (h *Handler) withdraw(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "The withdraw transaction was successful."})
 }
 
+// Getting balance. The received data is checked for correctness and sent to the goroutine for processing.
+// The result of the operation is received through the channel.
 func (h *Handler) getBalance(c *gin.Context) {
 
 	paramStr := c.Param("id")

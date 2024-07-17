@@ -9,7 +9,7 @@ import (
 )
 
 var mu sync.Mutex
-
+// Associates the Account structure, which implements the BankAccount interface, with map[int]*Account, which simulates a repository.
 type ProcessingService struct {
 	repository map[int]*Account
 }
@@ -18,6 +18,8 @@ func NewProcessingService(accounts map[int]*Account) *ProcessingService {
 	return &ProcessingService{repository: accounts}
 }
 
+// Using a mutex we check the existence of an account.
+// If there is, we send it to the goroutine for processing. We are waiting for a possible error from the channel.
 func (p *ProcessingService) DepositProcessing(id int, amount float64, resultChan chan error) {
 	mu.Lock()
 	acc, ok := p.repository[id]
@@ -34,6 +36,8 @@ func (p *ProcessingService) DepositProcessing(id int, amount float64, resultChan
 	}()
 }
 
+// Using a mutex we check the existence of an account.
+// If there is, we send it to the goroutine for processing. We are waiting for a possible error from the channel.
 func (p *ProcessingService) WithdrawProcessing(id int, amount float64, resultChan chan error) {
 	mu.Lock()
 	acc, ok := p.repository[id]
@@ -51,6 +55,8 @@ func (p *ProcessingService) WithdrawProcessing(id int, amount float64, resultCha
 	}()
 }
 
+// Using a mutex we check the existence of an account.
+// If there is, we send it to the goroutine for processing. We are waiting for the result from the channel.
 func (p *ProcessingService) BalanceProcessing(id int, resultChan chan float64) {
 	mu.Lock()
 	acc, ok := p.repository[id]

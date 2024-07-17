@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"sync"
 )
+// Implements the BankAccount interface. A mutex is used to access map in a thread-safe manner.
 type Account struct {
 	Id      int     `json:"id"`
 	Balance float64 `json:"balance"`

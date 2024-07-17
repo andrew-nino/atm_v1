@@ -14,6 +14,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+// Initialization and start of critical components.
 func Run(configPath string) {
 
 	// Configuration
