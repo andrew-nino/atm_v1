@@ -17,6 +17,8 @@ func intSeq() func() int {
 		return i
 	}
 }
+// The closure is used as a sequence number for identification.
+var nextID = intSeq()
 
 type inputData struct {
 	Amount float64 `json:"amount"`
@@ -24,8 +26,6 @@ type inputData struct {
 
 // Adding a new account to map is an imitation of a repository.
 func (h *Handler) addAccount(c *gin.Context) {
-// The closure is used as a sequence number for identification.
-	nextID := intSeq()
 
 	acc := service.Account{
 		Id:      nextID(),
