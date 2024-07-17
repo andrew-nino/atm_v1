@@ -13,6 +13,6 @@ Imitation of the ATM v1.0
 
 Собрать и запустить сервис можно с помощью команд `make start`.
 Проверить race conditions через команду `make race`.
-Запустить линтер можно командой `linter-golangci`.
+Запустить линтер можно командой `make linter-golangci`.
 
 Для просмотра методов и работы с ними через Postman можно импортировать файл atm_v1.0.0.postman_collection.json
